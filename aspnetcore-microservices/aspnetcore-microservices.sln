@@ -6,13 +6,13 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{50A67DB2-4C05-4EED-9777-D33C50E515DF}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		docker-compose.override.yml = docker-compose.override.yml
+		docker-compose.yml = docker-compose.yml
 		global.json = global.json
 		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C90839D4-3021-4E3E-BBC7-5ABBD3ED72BC}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4A9883F0-DEA3-4BD8-A8B3-676928FC2F37}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildingBlocks", "BuildingBlocks", "{2A819034-674C-4F7F-994A-EC5D3375E564}"
 EndProject
@@ -47,6 +47,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateways", "ApiGateways", "{13EE4330-CA48-4164-973E-46CE138A5057}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OcelotApiGateway", "src\ApiGateways\OcelotApiGateway\OcelotApiGateway.csproj", "{66E25771-D654-4CBD-AAF3-A8C61FD3A607}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{5A1C0E6C-D1E9-41B3-8E52-9F0C9ABA9FE8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -128,6 +130,7 @@ Global
 		{31EA6DA8-DEAA-43ED-B8A8-9E1E56D3808E} = {2A819034-674C-4F7F-994A-EC5D3375E564}
 		{13EE4330-CA48-4164-973E-46CE138A5057} = {C90839D4-3021-4E3E-BBC7-5ABBD3ED72BC}
 		{66E25771-D654-4CBD-AAF3-A8C61FD3A607} = {13EE4330-CA48-4164-973E-46CE138A5057}
+		{5A1C0E6C-D1E9-41B3-8E52-9F0C9ABA9FE8} = {C90839D4-3021-4E3E-BBC7-5ABBD3ED72BC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8447BE15-997D-4CB6-8488-21C8F052831D}
