@@ -1,1 +1,5 @@
 https://github.com/xuanhoang190999/tedu-apsnetcore-microservices
+
+dotnet ef migrations add "Init_productDB"
+
+dotnet ef database update

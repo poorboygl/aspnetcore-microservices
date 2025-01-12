@@ -1,4 +1,6 @@
 using Common.Logging;
+using Product.API.Extensions;
+using Product.API.Persistence;
 using Serilog;
 
 Log.Logger = new LoggerConfiguration().WriteTo.Console().CreateBootstrapLogger();
@@ -9,33 +11,29 @@ try
     var builder = WebApplication.CreateBuilder(args);
 
     builder.Host.UseSerilog(Serilogger.Configure);
-    // Add services to the container.
+    builder.Host.AddAppConfigurations();
 
-    builder.Services.AddControllers();
-    // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-    builder.Services.AddEndpointsApiExplorer();
-    builder.Services.AddSwaggerGen();
+    // Add services to the container.
+    builder.Services.AddInfrastructure(builder.Configuration);
 
     var app = builder.Build();
+    app.UseInfrastructure();
 
-    // Configure the HTTP request pipeline.
-    if (app.Environment.IsDevelopment())
+    app.MigrateDatabase<ProductContext>((context, _) =>
     {
-        app.UseSwagger();
-        app.UseSwaggerUI();
-    }
-
-    app.UseHttpsRedirection();
-
-    app.UseAuthorization();
-
-    app.MapControllers();
-
+        ProductContextSeed.SeedProductAsync(context, Log.Logger).Wait(); // T? ??ng thêm d? li?u vào db n?u ch?a có
+    });
     app.Run();
 }
 catch (Exception ex)
 {
+    string type = ex.GetType().Name;
+    if (type.Equals("StopTheHostException", StringComparison.Ordinal))
+    {
+        throw;
+    }
     Log.Fatal(ex, "Unhandler exception");
+
 }
 finally
 {
