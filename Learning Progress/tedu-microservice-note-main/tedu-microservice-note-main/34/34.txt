@@ -1,0 +1,3 @@
+Copy file appsettings.Developement.json vào thư mục Order.Api
+Replace file OrderController
+Sửa toAddress trong cái biến message thành mail của mình để test

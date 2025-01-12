@@ -1,0 +1,15 @@
+Nếu không mở được localhost:5050 thì vào docker-compose.override.yml sửa:
+PGADMIN_DEFAULT_EMAIL=admin@tedu_microservice.com
+thành
+PGADMIN_DEFAULT_EMAIL=pgadmin4@pgadmin.org
+
+khi đăng nhập trên 5050 thì 
+tên tài khoản: pgadmin4@pgadmin.org
+pass: admin1234
+
+Note: Nó không tạo được container pgadmin vì cái email invalid. (đọc log của container)
+
+Các cách xem log docker container:
+- cmd: docker logs pgadmin
+- Dùng app Docker Destop => Container => src => pgadmin
+- Vào portainer.io ở url: localhost:9000

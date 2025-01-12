@@ -1,0 +1,8 @@
+BuildingBlocks: Chứa các classlib dùng chung cho các MS.
+- Common.Logger: Cấu hình SeriLog dùng chung cho các MS.
+- EvenBus.Message: Message Broker (RabbitMq).
+- Contracts: Chứa các Interface. Các MS sẽ reference đến nó
+  và implement các interface đảm bảo các MS có 1 quy chuẩn chung.
+- Infrastructure (Hạ tầng): Triển khai tất cả các interface mà Contracts định nghĩa.
+Note: Mỗi MS là 1 Solution chứ k fai 1 project.
+

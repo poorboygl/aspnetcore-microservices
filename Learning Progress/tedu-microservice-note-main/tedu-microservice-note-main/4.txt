@@ -1,0 +1,6 @@
+Nguyên tắc thiết kế microservice:
+1. 1 MS chỉ làm 1 nghiệp vụ cụ thể duy nhất.
+2. 1 MS được đóng gói ở 1 môi trường tiêng rẽ không phụ thuộc nhau. Được đóng gói riêng biệt trong 1 docker container, 1 file dll...
+3. Dễ dàng triển khai ở các môi trường khác. Có tính sử dụng lại dễ dàng như kiểu 1 container docker.
+4. ! MS chỉ chứa data của chính nó. Nếu share thì chỉ qua public interface. Việc này dẫn đến dư thừa dữ liệu kiểu như mS thanh toán lưu 1 phần dữ liệu của MS user... Nhưng lại đảm bỏa các MS có thẻ hoạt động độc lập.
+5. ! MS có thể có vòng đời linh tinh. Có thể dài, có thể chỉ đẻ xử lý 1 business r hủy luôn.

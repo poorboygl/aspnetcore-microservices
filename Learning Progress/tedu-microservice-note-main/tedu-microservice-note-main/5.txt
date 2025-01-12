@@ -1,0 +1,3 @@
+Cách để các MS giao tiếp với nhau:
+1. Đồng bộ qua HTTP?HTTPS protocol. * phân biệt rõ với async/await vì async chỉ là mutilthread trả tài nguyên cho server còn cái dòng await vẫn chờ như thường.
+2. Bất đồng bộ: AMQP protocol. Chỉ gửi message lên còn đâu kệ. Điển hình là RabbitMQ, Kafka.

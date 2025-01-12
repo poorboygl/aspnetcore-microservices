@@ -1,0 +1,23 @@
+Product.API:
+1. Folder Extension: Chứa các kiểu cấu hình làm cho Program.cs nó gọn lại.
+Mục đích là khi cần sửa cấu hình thì vào đúng file để sửa.
+
+2. Entities: Chứa cái CatalogProduct kế thừa EntityAuditBase trong BuildingBlocks/Contracts/Domain.
+Trong cái Domain đó định nghĩa ra mấy cái thuộc tính dùng chung cho các entity của toàn bộ dự án.
+Kiểu như EntityAuditBase thì sẽ có CreateBy, LastModifiedDate. IDateTracking thì có CreatedDate, LastModifiedDate.
+
+3. Persistence: Chứa ProductContext (định nghĩa DB) config cả SaveChangesAsync kiểu nếu có IDateTracking thì tự động gán CreateDate,
+ ProductContextSeed (sinh dữ liệu product lúc chạy dự án nếu DB rỗng).
+để có lệnh dotnet ef thì cần chạy cmd: 
+dotnet tool install --global dotnet-ef
+Chuyển đến thư mục chứa code của ProductAPI
+cd C:\CongViec\Tedu\tedu-aspnetcore-microservices-training\src\Services\Product.API
+Chyaj lệnh để sinh ra folder Migrations:
+dotnet ef migration add "Initial_ProductDB"
+Taọ DB:
+dotnet ef datanase update
+
+4. Repositories: 
+BuildingBlocks/Contracts/Common địnjh nghĩa iUnitOFWork quản lý transactions khi lưu DB, Irepository điịnh nghĩa các method thao tác với dữ liệu
+BuildingBlocks/Infrastucture/Common: Triển khai các interface trên của Contracts dưới dạng Generic <T,K> để dùng lại trong các MS.
+Repositories: Triển khai các Repositories cho ProductAPi.

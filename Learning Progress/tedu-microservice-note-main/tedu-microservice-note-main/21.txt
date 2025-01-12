@@ -1,0 +1,9 @@
+1. Mở redis-cli
+docker exec -it basketdb redis-cli
+2. Các lệnh cơ bản
+set <key> <value> => tạo đối tượng tên key có giá trị value
+get <key> => lấy giá trị đối tượng key
+incr <key> <value> => tăng giá trị của key lên value
+lpush <key> <value2> <value1> <value0> => tạo đối tượng list có các phần tử value0, 1, 2
+lindex <key> <value> => lấy giá trị của phần tử thứ value của đối tượng list key
+lrange <key> <start> <stop> => lấy các phần tử từ start đến stop của list key

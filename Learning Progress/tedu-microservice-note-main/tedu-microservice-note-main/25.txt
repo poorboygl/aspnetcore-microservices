@@ -1,0 +1,6 @@
+Trong hàm Update
+.SetAbsoluteExpiration(DateTime.UtcNow.AddHours(10)) : Setup thời hạn lưu cache đến 10 ti
+.SetSlidingExpiration(TimeSpan.FromMinutes(10)); : Khoảng thời gian bản ghi không hoạt động (truy vấn, thay đổi),
+													  Ở đây sau 10p không động vào sẽ xóa.
+													  Nhưng sau 10h kể cả trước đó 10p có action thì vẫn xóa.
+Ngía là: SetSlidingExpiration không ảnh hưởng đến SetAbsoluteExpiration

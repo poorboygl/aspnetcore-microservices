@@ -1,0 +1,3 @@
+SOA: Service-oriented architecture
+Là 1 chuẩn thiết kế phần mềm hướng module hóa các service.
+Các service giao tiếp với nhau qua các common interface đảm bảo implement tất cả các method.

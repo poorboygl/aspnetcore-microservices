@@ -1,0 +1,11 @@
+Cài 2 nuget package vào ProductApi:
+AutoMapper: Để mapping 2 đối tượng với nhau. Phải cấu hình thì mới mapping được (MappingProfile.cs)
+Extensions.Microsoft.DependencyInjection: Tiêm phụ thuộc
+Note: Khái niệm Dto: Giống như model, khi muốn show mà che đi một số trường thì sẽ mapping từ Entity (chứa full các trường)
+  thành 1 Dto chứa các trường cần dùng.
+  Ví dụ: lấy thông tin user về để hiện danh sách người dùng. Trên UI chỉ cần tên, tuổi, phồng ban thôi.
+  thì sẽ mapping cái UserEntity (lấy từ DB) ra UserDto chỉ chứa tên, tuổi, phòng ban rồi trả UserDto về cho client.
+
+Các DTo dùng chung cho các MS ở trong: BuildingBlocks/Shared/DTOs
+IgnoreAllNonExisting nó sẽ bỏ qua các trường không tồn tại ở thằng nguồn. Dùng cho các hàm Update.
+Đã test bỏ cái IgnoreAllNonExisting() đi thì vẫn chạy bt. Lỗi trong video là do nó dùng nhầm hàm map của Create chứ chả liên quan gì đeến No null ở UpdateProductDto

@@ -1,0 +1,5 @@
+Lợi thế của microservice:
+- Agility: Nhanh trong deploy vì được cấu trúc phân tán.
+- Freedom of Options: Không bị phụ thuộc vào 1 công nghệ. Mỗi microservice có thể sử dụng 1 công nghệ khác nhau, tận dụng nguồn lực.
+- Resiliency: Xử lý lỗi độc lập cho từng MS trong khi toàn bộ hệ thống vẫn hoạt động.
+- Efficiency: Tính hiệu quả. Tận dụng các free lisense tiết kiệm chi phí, tận dụng nguồn lực sẵn có => Giảm chi phí.

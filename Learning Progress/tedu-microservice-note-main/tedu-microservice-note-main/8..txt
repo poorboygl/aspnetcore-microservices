@@ -1,0 +1,14 @@
+1. Clone code trên git về:
+link: https://github.com/rickykiet83/tedu-aspnetcore-microservices-training.git
+mailto:abcxyzhjhj@gmail.com pass: phamvancuong@123
+2. Cài đặt docker (chú ý chạy nhân WSL2):
+  Hướng dẫn cài WSL 2: https://xuanthulab.net/gioi-thieu-va-cai-dat-wsl-tren-windows.html
+  Linhk cài Docker: https://docs.docker.com/desktop/windows/install/
+  Cài docker xong bật cái phần mềm Docker desktop lên. Mơ cmd chạy: docker -v. Kiểm tra xem được chưa.
+3. cd đến thư mục chứa 2 file docker-compose.yml của source code clon ở 1 về VD: cd C:\CongViec\tedu-aspnetcore-microservices-training\src. Chạy lệnh sau để nó tạo ra các DB
+docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d --remove-orphans
+5. Chạy xong (khá lâu). Chạy lệnh: docker ps . Kiểm tra xem ở cột NAMES có hiện đủ tên các services mà trong file docker-compose.yml định nghĩa k. Đủ là ok.
+6. Có thể mở SSMS để kết nối vào DB sql trên docker: 
+server: localhost,1435
+user: sa
+pass: Passw0rd!
