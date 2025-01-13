@@ -6,8 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{50A67DB2-4C05-4EED-9777-D33C50E515DF}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
-		docker-compose.override.yml = docker-compose.override.yml
-		docker-compose.yml = docker-compose.yml
 		global.json = global.json
 		README.md = README.md
 	EndProjectSection
@@ -36,19 +34,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordering.API", "src\Service
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Handfire.API", "src\Services\Handfire.API\Handfire.API.csproj", "{902BA47E-441B-4BAC-BEC6-CBF20C1FF1AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Product.API", "src\Services\Product.API\Product.API.csproj", "{B3AD61BD-CA51-4AEE-94B4-F15E93E75340}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Product.API", "src\Services\Product.API\Product.API.csproj", "{B3AD61BD-CA51-4AEE-94B4-F15E93E75340}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contracts", "src\BuildingBlocks\Contracts\Contracts.csproj", "{3714FCCF-1CB6-43DD-BD34-A959B388CB96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "src\BuildingBlocks\Infrastructure\Infrastructure.csproj", "{970C2FB7-9A26-4904-86A2-865AA6FD6299}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "src\BuildingBlocks\Infrastructure\Infrastructure.csproj", "{970C2FB7-9A26-4904-86A2-865AA6FD6299}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "src\BuildingBlocks\Shared\Shared.csproj", "{31EA6DA8-DEAA-43ED-B8A8-9E1E56D3808E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "src\BuildingBlocks\Shared\Shared.csproj", "{31EA6DA8-DEAA-43ED-B8A8-9E1E56D3808E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateways", "ApiGateways", "{13EE4330-CA48-4164-973E-46CE138A5057}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OcelotApiGateway", "src\ApiGateways\OcelotApiGateway\OcelotApiGateway.csproj", "{66E25771-D654-4CBD-AAF3-A8C61FD3A607}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{5A1C0E6C-D1E9-41B3-8E52-9F0C9ABA9FE8}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "Docker-compose", "Docker-compose.dcproj", "{DA73BC74-D41F-4077-B239-16888CB72074}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -108,6 +108,10 @@ Global
 		{66E25771-D654-4CBD-AAF3-A8C61FD3A607}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66E25771-D654-4CBD-AAF3-A8C61FD3A607}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66E25771-D654-4CBD-AAF3-A8C61FD3A607}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA73BC74-D41F-4077-B239-16888CB72074}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA73BC74-D41F-4077-B239-16888CB72074}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA73BC74-D41F-4077-B239-16888CB72074}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA73BC74-D41F-4077-B239-16888CB72074}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

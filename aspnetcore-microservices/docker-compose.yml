@@ -31,6 +31,14 @@ services:
   kibana:
     image: docker.elastic.co/kibana/kibana:7.17.2
 
+  #microservices api section
+  product.api:
+   image: ${DOCKER_REGISTRY-}product-api:${PLATFORM:-linux}-${TAG:-latest}
+   build:
+     context: .
+     dockerfile: src/Services/Product.API/Dockerfile
+
+
 #network section
 networks:
   default:
@@ -55,3 +63,8 @@ volumes:
     name: mongo_data
   pgadmin_data:
     name: pgadmin_data
+
+
+
+
+
