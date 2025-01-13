@@ -21,6 +21,8 @@ public static class ServiceExtensions
 
         services.ConfigureProductDbContext(configuration);
         services.AddInfrastructrueService();
+        services.AddAutoMapper(cfg => cfg.AddProfile(new MappingProfile()));
+
 
         return services;
     }
