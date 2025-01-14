@@ -1,44 +1,39 @@
 using Common.Logging;
+//using Customer.API.Controllers;
+using Customer.API.Extensions;
+using Customer.API.Persistence;
 using Serilog;
 
-Log.Logger = new LoggerConfiguration().WriteTo.Console().CreateBootstrapLogger();
+var builder = WebApplication.CreateBuilder(args);
+
 Log.Information("Starting Customer API up");
 
 try
 {
-    var builder = WebApplication.CreateBuilder(args);
-
     builder.Host.UseSerilog(Serilogger.Configure);
-    // Add services to the container.
 
-    builder.Services.AddControllers();
-    // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-    builder.Services.AddEndpointsApiExplorer();
-    builder.Services.AddSwaggerGen();
+    builder.Host.AddAppConfigurations();
+
+    builder.Services.AddInfrastructure();
 
     var app = builder.Build();
 
-    // Configure the HTTP request pipeline.
-    if (app.Environment.IsDevelopment())
-    {
-        app.UseSwagger();
-        app.UseSwaggerUI();
-    }
+    app.UseInfrastructure(builder.Configuration);
 
-    app.UseHttpsRedirection();
+   // app.MapCustomersAPI();
 
-    app.UseAuthorization();
-
-    app.MapControllers();
-
-    app.Run();
+    app.SeedCustomerData().Run();
 }
 catch (Exception ex)
 {
-    Log.Fatal(ex, "Unhandler exception");
+    string type = ex.GetType().Name;
+    if (type.Equals("StopTheHostException", StringComparison.Ordinal))
+    {
+        throw;
+    }
+    Log.Fatal(ex, "Application terminated unexpectedly");
 }
 finally
 {
-    Log.Information("Shut down Customer API complete");
     Log.CloseAndFlush();
 }
