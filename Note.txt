@@ -9,4 +9,26 @@ dotnet ef database update
 
 dotnet ef migrations add "Init_CustomerDB"
 
+docker exec -it d8c93eaeb806 sh
 
+redis-server
+
+redis-cli
+
+ping
+
+set myname nguyenvu
+
+get my name
+
+set LoginCount 0
+
+get LoginCount
+
+incr LoginCount
+
+LPUSH Fruits apple lemon
+
+LINDEX Fruits 0
+
+LRANGE Fruits 0 -1
