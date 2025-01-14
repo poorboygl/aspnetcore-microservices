@@ -40,6 +40,12 @@ services:
 
 
 #network section
+  customer.api:
+    image: ${DOCKER_REGISTRY-}customer-api:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/Services/Customer.API/Dockerfile
+
 networks:
   default:
     name: tedu_microservices
@@ -63,6 +69,7 @@ volumes:
     name: mongo_data
   pgadmin_data:
     name: pgadmin_data
+
 
 
 

@@ -1,8 +1,12 @@
 https://github.com/xuanhoang190999/tedu-apsnetcore-microservices
 https://github.com/huynhdieutuong/tedu-microservice
 
+docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d --remove-orphans
+
 dotnet ef migrations add "Init_productDB"
 
 dotnet ef database update
 
 dotnet ef migrations add "Init_CustomerDB"
+
+

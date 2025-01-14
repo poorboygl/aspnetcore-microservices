@@ -1,5 +1,5 @@
 using Common.Logging;
-//using Customer.API.Controllers;
+using Customer.API.Controllers;
 using Customer.API.Extensions;
 using Customer.API.Persistence;
 using Serilog;
@@ -12,15 +12,13 @@ try
 {
     builder.Host.UseSerilog(Serilogger.Configure);
 
-    builder.Host.AddAppConfigurations();
-
-    builder.Services.AddInfrastructure();
+    builder.Services.AddInfrastructure(builder.Configuration);
 
     var app = builder.Build();
 
-    app.UseInfrastructure(builder.Configuration);
+    app.UseInfrastructure();
 
-   // app.MapCustomersAPI();
+    app.MapCustomersAPI();
 
     app.SeedCustomerData().Run();
 }

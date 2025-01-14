@@ -1,31 +1,15 @@
-﻿using HealthChecks.UI.Client;
-//using Infrastructure.ScheduleJobs;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-
-namespace Customer.API.Extensions;
-
-public static class ApplicationExtensions
+﻿namespace Customer.API.Extensions
 {
-    public static void UseInfrastructure(this IApplicationBuilder app, IConfiguration configuration)
+    public static class ApplicationExtensions
     {
-        app.UseSwagger();
-        app.UseSwaggerUI();
-
-        //app.UseHttpsRedirection();
-        app.UseRouting();
-
-        app.UseAuthorization();
-
-        //app.UseHangfireDashboard(configuration);
-
-        app.UseEndpoints(endpoints =>
+        public static void UseInfrastructure(this IApplicationBuilder app)
         {
-            endpoints.MapHealthChecks("/hc", new HealthCheckOptions
-            {
-                Predicate = _ => true,
-                ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
-            });
-            endpoints.MapDefaultControllerRoute();
-        });
+            app.UseSwagger();
+            app.UseSwaggerUI();
+
+            //app.UseHttpsRedirection();
+
+            app.UseAuthorization();
+        }
     }
 }

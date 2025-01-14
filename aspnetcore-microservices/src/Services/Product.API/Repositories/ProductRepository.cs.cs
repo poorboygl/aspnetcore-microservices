@@ -28,5 +28,6 @@ namespace Product.API.Repositories
             var product = await GetProductAsync(id);
             if (product != null) await DeleteAsync(product);
         }
+
     }
 }
