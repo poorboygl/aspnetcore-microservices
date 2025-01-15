@@ -7,6 +7,6 @@ namespace Basket.API.Repositories.Interfaces
     {
         Task<Cart> GetBasketByUserNameAsync(string userName);
         Task<Cart> UpdateBasketAsync(Cart cart, DistributedCacheEntryOptions options = null);
-        Task DeleteBasketFromUserNameAsync(string userName);
+        Task<bool> DeleteBasketFromUserNameAsync(string userName);
     }
 }
