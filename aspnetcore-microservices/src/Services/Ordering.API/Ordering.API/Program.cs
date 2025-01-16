@@ -1,6 +1,7 @@
 using Common.Logging;
 using Serilog;
 using Ordering.Infrastructure;
+using Ordering.Infrastructure.Persistence;
 
 Log.Logger = new LoggerConfiguration().WriteTo.Console().CreateBootstrapLogger();
 Log.Information("Starting Ordering API up");
@@ -20,11 +21,19 @@ try
 
     var app = builder.Build();
 
+
     // Configure the HTTP request pipeline.
     if (app.Environment.IsDevelopment())
     {
         app.UseSwagger();
         app.UseSwaggerUI();
+    }
+
+    using (var scope = app.Services.CreateScope())
+    {
+        var orderContextSeed = scope.ServiceProvider.GetRequiredService<OrderContextSeed>();
+        await orderContextSeed.InitializeAsync();
+        await orderContextSeed.SeedAsync();
     }
 
     app.UseHttpsRedirection();
