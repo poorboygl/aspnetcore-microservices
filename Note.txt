@@ -32,3 +32,13 @@ LPUSH Fruits apple lemon
 LINDEX Fruits 0
 
 LRANGE Fruits 0 -1
+
+https://jasontaylor.dev/clean-architecture-getting-started/
+https://github.com/jasontaylordev/CleanArchitecture?tab=readme-ov-file
+
+Clean Architecture
+Application: Cài đặt CQRS
+Domain: Tạo ra các Entities, không add reference nào. 
+Infrastructure: triển khai những gì domain đưa ra. Service mà application cần mở rộng thêm
+
+Ở bên ngoài sẽ add reference bên trong.
