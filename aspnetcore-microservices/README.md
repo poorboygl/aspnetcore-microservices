@@ -12,3 +12,4 @@ docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d --buil
 -Identity Service: https://localhost:5001
 -OctoQual API: https://localhost:5002
 -OctoQual Client MVC: https://localhost:6001
+

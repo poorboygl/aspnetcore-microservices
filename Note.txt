@@ -46,3 +46,6 @@ Infrastructure: triển khai những gì domain đưa ra. Service mà applicatio
 dotnet ef migrations add "Init_OrderDB" --project Ordering.Infrastructure --startup-project Ordering.API --output-dir Persistence\Migrations
 dotnet ef migrations remove --project Ordering.Infrastructure --startup-project Ordering.API 
 dotnet ef database update --project Ordering.Infrastructure --startup-project Ordering.API 
+
+fnxo pllu otbe efuo
+
