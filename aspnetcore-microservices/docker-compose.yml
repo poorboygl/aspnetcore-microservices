@@ -52,6 +52,12 @@ services:
       context: .
       dockerfile: src/Services/Basket.API/Dockerfile
 
+  ordering.api:
+    image: ${DOCKER_REGISTRY-}ordering-api:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/Services/Ordering.API/Ordering.API/Dockerfile
+
 networks:
   default:
     name: tedu_microservices
@@ -75,6 +81,7 @@ volumes:
     name: mongo_data
   pgadmin_data:
     name: pgadmin_data
+
 
 
 
