@@ -4,6 +4,10 @@ using Ordering.Infrastructure;
 using Ordering.Infrastructure.Persistence;
 using Ordering.Application;
 using Ordering.API.Extensions;
+using Contracts.Messages;
+using Infrastructure.Messages;
+using Contracts.Common.Interfaces;
+using Infrastructure.Common;
 
 Log.Logger = new LoggerConfiguration().WriteTo.Console().CreateBootstrapLogger();
 Log.Information("Starting Ordering API up");
@@ -15,6 +19,11 @@ try
     builder.Host.UseSerilog(Serilogger.Configure);
     // Add services to the container.
     builder.Services.AddInfrastructureServices(builder.Configuration);
+    builder.Services.AddScoped<IMessageProducer, RabbitMQProducer>();
+    builder.Services.AddScoped<ISerializerService,SerializerService>();
+
+
+
     builder.Services.AddApplicationServices();
     builder.Services.AddConfigurationSettings(builder.Configuration);
     builder.Services.AddControllers();
