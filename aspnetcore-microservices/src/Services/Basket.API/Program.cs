@@ -1,3 +1,4 @@
+using Basket.API;
 using Basket.API.Extensions;
 using Common.Logging;
 using Serilog;
@@ -16,6 +17,7 @@ try
     builder.Host.UseSerilog(Serilogger.Configure);
 
     builder.Services.AddInfrastructure(builder.Configuration);
+    builder.Services.AddAutoMapper(cfg => cfg.AddProfile(new MappingProfile()));
 
     var app = builder.Build();
 

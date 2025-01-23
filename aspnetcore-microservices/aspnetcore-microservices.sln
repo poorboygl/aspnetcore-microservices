@@ -58,6 +58,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordering.Infrastructure", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EventBus", "EventBus", "{32DA707A-1152-4E54-89D7-A8B33FD12145}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBus.Messages", "src\BuildingBlocks\EventBus\EventBus.Messages\EventBus.Messages.csproj", "{61F34083-AD20-43B9-B2A0-961720AB9EFA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -128,6 +130,10 @@ Global
 		{D534F3A3-64C4-4CC6-9FB2-17892A22044D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D534F3A3-64C4-4CC6-9FB2-17892A22044D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D534F3A3-64C4-4CC6-9FB2-17892A22044D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61F34083-AD20-43B9-B2A0-961720AB9EFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61F34083-AD20-43B9-B2A0-961720AB9EFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61F34083-AD20-43B9-B2A0-961720AB9EFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61F34083-AD20-43B9-B2A0-961720AB9EFA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -155,6 +161,7 @@ Global
 		{85EEEAB2-CE46-4768-961A-BA443ED61EC0} = {240C5BB9-CD16-41E5-A303-BC3635AAB1C4}
 		{D534F3A3-64C4-4CC6-9FB2-17892A22044D} = {240C5BB9-CD16-41E5-A303-BC3635AAB1C4}
 		{32DA707A-1152-4E54-89D7-A8B33FD12145} = {2A819034-674C-4F7F-994A-EC5D3375E564}
+		{61F34083-AD20-43B9-B2A0-961720AB9EFA} = {32DA707A-1152-4E54-89D7-A8B33FD12145}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8447BE15-997D-4CB6-8488-21C8F052831D}

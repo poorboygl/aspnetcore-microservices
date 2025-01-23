@@ -1,4 +1,4 @@
-﻿namespace EventBus.Messages.Interfaces;
+﻿namespace EventBus.Messages.IntergrationEvents.Interfaces;
 
 internal interface IBasketCheckoutEvent : IIntegrationEvent
 {
@@ -8,5 +8,5 @@ internal interface IBasketCheckoutEvent : IIntegrationEvent
     public string LastName { get; set; }
     public string EmailAddress { get; set; }
     public string ShippingAddress { get; set; }
-    public string  InvoiceAddress { get; set; }
+    public string InvoiceAddress { get; set; }
 }

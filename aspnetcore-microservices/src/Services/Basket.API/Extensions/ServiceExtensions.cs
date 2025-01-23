@@ -2,39 +2,68 @@
 using Basket.API.Repositories;
 using Contracts.Common.Interfaces;
 using Infrastructure.Common;
+using MassTransit;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Shared.Configurations;
+using Infrastructure.Extensions;
+using EventBus.Messages.IntergrationEvents.Events;
 
-namespace Basket.API.Extensions
+
+namespace Basket.API.Extensions;
+
+public static class ServiceExtensions
 {
-    public static class ServiceExtensions
+    public static void AddInfrastructure(this IServiceCollection service, IConfiguration configuration)
     {
-        public static void AddInfrastructure(this IServiceCollection service, IConfiguration configuration)
-        {
-            service.AddControllers();
-            service.AddEndpointsApiExplorer();
-            service.AddSwaggerGen();
+        service.AddControllers();
+        service.AddEndpointsApiExplorer();
+        service.AddSwaggerGen();
 
-            service.ConfigureRedis(configuration);
-            service.AddInfrastructureService();
+        service.ConfigureRedis();
+        service.ConfigureMassTransit();
+        service.AddInfrastructureService();
+    }
+
+    private static void ConfigureRedis(this IServiceCollection services)
+    {
+        var settings = services.GetOptions<CacheSettings>(nameof(CacheSettings));
+        if (string.IsNullOrEmpty(settings.ConnectionStrings))
+        {
+            throw new ArgumentException("Redis Conenction string is not configured!");
         }
 
-        private static void ConfigureRedis(this IServiceCollection services, IConfiguration configuration)
+        services.AddStackExchangeRedisCache(options =>
         {
-            var redisConnectionString = configuration.GetSection("CacheSettings:ConnectionString").Value;
-            if (string.IsNullOrEmpty(redisConnectionString))
-            {
-                throw new ArgumentException("Redis Conenction string is not configured!");
-            }
+            options.Configuration = settings.ConnectionStrings;
+        });
+    }
 
-            services.AddStackExchangeRedisCache(options =>
+    private static void AddInfrastructureService(this IServiceCollection services)
+    {
+        services.AddScoped<IBasketRepository, BasketRepository>()
+               .AddTransient<ISerializerService, SerializerService>();
+    }
+
+    private static void ConfigureMassTransit(this IServiceCollection services)
+    {
+        var settings = services.GetOptions<EventBusSettings>(nameof(EventBusSettings));
+        if (settings == null || string.IsNullOrEmpty(settings.HostAddress))
+        {
+            throw new ArgumentException("EventBusSettings is not configured!");
+        }
+
+        var mqConnection = new Uri(settings.HostAddress);
+        //format "BasketCheckoutEventQueue" => "basket-checkout-event-queue"
+        services.TryAddSingleton(KebabCaseEndpointNameFormatter.Instance);
+
+        services.AddMassTransit(config =>
+        {
+            config.UsingRabbitMq((ctx, cfg) =>
             {
-                options.Configuration = redisConnectionString;
+                cfg.Host(mqConnection);
             });
-        }
-
-        private static void AddInfrastructureService(this IServiceCollection services)
-        {
-            services.AddScoped<IBasketRepository, BasketRepository>()
-                   .AddTransient<ISerializerService, SerializerService>();
-        }
+            // Publish submit order message, instead of sending it to a specific queue directly.
+            config.AddRequestClient<BasketCheckoutEvent>();
+        });
     }
 }

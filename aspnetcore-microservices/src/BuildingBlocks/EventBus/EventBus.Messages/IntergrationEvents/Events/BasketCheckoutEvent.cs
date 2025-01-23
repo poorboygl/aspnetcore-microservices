@@ -1,6 +1,6 @@
-﻿using EventBus.Messages.Interfaces;
+﻿using EventBus.Messages.IntergrationEvents.Interfaces;
 
-namespace EventBus.Messages.Events;
+namespace EventBus.Messages.IntergrationEvents.Events;
 
 public record class BasketCheckoutEvent : IntegrationBaseEvent, IBasketCheckoutEvent
 {

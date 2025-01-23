@@ -1,4 +1,4 @@
-﻿namespace EventBus.Messages;
+﻿namespace EventBus.Messages.IntergrationEvents;
 
 public interface IIntegrationEvent
 {
