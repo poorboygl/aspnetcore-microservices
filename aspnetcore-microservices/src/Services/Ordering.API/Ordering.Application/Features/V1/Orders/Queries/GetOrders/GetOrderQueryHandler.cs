@@ -2,7 +2,8 @@
 using MediatR;
 using Ordering.Application.Common.Interfaces;
 using Ordering.Application.Common.Models;
-using ILogger = Serilog.ILogger;
+using Serilog;
+using Shared.SeedWork;
 using Shared.SeedWork.ApiResult;
 
 namespace Ordering.Application.Features.V1.Orders;

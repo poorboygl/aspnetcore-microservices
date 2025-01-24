@@ -52,13 +52,13 @@ public class OrderContextSeed
             await _context.Orders.AddRangeAsync(
                 new Order
                 {
-                    UserName = "johndoe",
-                    FirstName = "John",
-                    LastName = "Doe",
-                    EmailAddress = "johndoe@gmail.com",
-                    ShippingAddress = "123 Main St",
-                    InvoiceAddress = "123 Main St",
-                    TotalPrice = 350
+                    UserName = "customer1",
+                    FirstName = "customer1",
+                    LastName = "customer",
+                    EmailAddress = "customer1@gmail.com",
+                    ShippingAddress = "Wollongong",
+                    InvoiceAddress = "Australia",
+                    TotalPrice = 250
                 });
         }
     }

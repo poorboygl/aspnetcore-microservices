@@ -1,7 +1,11 @@
-﻿using Basket.API.Entities;
+﻿using AutoMapper;
+using Basket.API.Entities;
 using Basket.API.Repositories.Interfaces;
+using EventBus.Messages.IntergrationEvents.Events;
+using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
+using System.Net;
 
 namespace Basket.API.Controllers
 {
@@ -10,13 +14,18 @@ namespace Basket.API.Controllers
     public class BasketsController : ControllerBase
     {
         private readonly IBasketRepository _basketRepository;
+        private readonly IMapper _mapper;
+        private readonly IPublishEndpoint _publicEndpoint;
 
-        public BasketsController(IBasketRepository basketRepository)
+        public BasketsController(IBasketRepository basketRepository, IMapper mapper, IPublishEndpoint publicEndpoint)
         {
-            _basketRepository = basketRepository ?? throw new ArgumentNullException(nameof(basketRepository));
+            _basketRepository = basketRepository;
+            _mapper = mapper;
+            _publicEndpoint = publicEndpoint;
         }
 
         [HttpGet("{userName}")]
+        [ProducesResponseType(typeof(Cart), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<Cart>> GetBasketAsync(string userName)
         {
             var result = await _basketRepository.GetBasketByUserNameAsync(userName);
@@ -24,6 +33,7 @@ namespace Basket.API.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(typeof(Cart), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<Cart>> UpdateBasketAsync(Cart cart)
         {
             //a cached object will be expired if it not being requested for a defined amount of time period.
@@ -36,9 +46,30 @@ namespace Basket.API.Controllers
         }
 
         [HttpDelete("{userName}")]
-        public async Task<ActionResult> DeleteBasketAsync(string userName)
+        [ProducesResponseType(typeof(bool), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<bool>> DeleteBasketAsync(string userName)
         {
-            await _basketRepository.DeleteBasketFromUserNameAsync(userName);
+            var result = await _basketRepository.DeleteBasketFromUserNameAsync(userName);
+            return Ok(result);
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        [ProducesResponseType((int)HttpStatusCode.Accepted)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<ActionResult> CheckoutAsync(BasketCheckout basketCheckout)
+        {
+            var basket = await _basketRepository.GetBasketByUserNameAsync(basketCheckout.UserName);
+            if (basket == null) return NotFound();
+
+            // publish checkout event to EventBus Message
+            var eventMessage = _mapper.Map<BasketCheckoutEvent>(basketCheckout);
+            eventMessage.TotalPrice = basket.TotalPrice;
+            await _publicEndpoint.Publish(eventMessage);
+
+            // remove the basket
+            // await _basketRepository.DeleteBasketFromUserName(basket.Username);
+
             return Accepted();
         }
     }

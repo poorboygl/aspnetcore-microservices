@@ -17,4 +17,20 @@ public class OrderRepository : RepositoryBaseAsync<Order, long, OrderContext>, I
     {
         return await FindByCondition(x => x.UserName.Equals(userName)).ToListAsync();
     }
+
+    public async Task<long> CreateOrderAsync(Order order)
+    {
+        return await CreateAsync(order);
+    }
+
+    public async Task<Order> UpdateOrderAsync(Order order)
+    {
+        await UpdateAsync(order);
+        return order;
+    }
+
+    public async Task DeleteOrderAsync(Order order)
+    {
+        await DeleteAsync(order);
+    }
 }
