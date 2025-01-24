@@ -13,12 +13,13 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["src/Services/Ordering.API/Ordering.API/Ordering.API.csproj", "src/Services/Ordering.API/Ordering.API/"]
 COPY ["src/BuildingBlocks/Common.Logging/Common.Logging.csproj", "src/BuildingBlocks/Common.Logging/"]
+COPY ["src/BuildingBlocks/EventBus/EventBus.Messages/EventBus.Messages.csproj", "src/BuildingBlocks/EventBus/EventBus.Messages/"]
 COPY ["src/Services/Ordering.API/Ordering.Application/Ordering.Application.csproj", "src/Services/Ordering.API/Ordering.Application/"]
+COPY ["src/BuildingBlocks/Infrastructure/Infrastructure.csproj", "src/BuildingBlocks/Infrastructure/"]
+COPY ["src/BuildingBlocks/Contracts/Contracts.csproj", "src/BuildingBlocks/Contracts/"]
 COPY ["src/BuildingBlocks/Shared/Shared.csproj", "src/BuildingBlocks/Shared/"]
 COPY ["src/Services/Ordering.API/Ordering.Domain/Ordering.Domain.csproj", "src/Services/Ordering.API/Ordering.Domain/"]
-COPY ["src/BuildingBlocks/Contracts/Contracts.csproj", "src/BuildingBlocks/Contracts/"]
 COPY ["src/Services/Ordering.API/Ordering.Infrastructure/Ordering.Infrastructure.csproj", "src/Services/Ordering.API/Ordering.Infrastructure/"]
-COPY ["src/BuildingBlocks/Infrastructure/Infrastructure.csproj", "src/BuildingBlocks/Infrastructure/"]
 RUN dotnet restore "./src/Services/Ordering.API/Ordering.API/Ordering.API.csproj"
 COPY . .
 WORKDIR "/src/src/Services/Ordering.API/Ordering.API"
